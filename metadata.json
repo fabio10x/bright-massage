@@ -1,0 +1,6 @@
+{
+  "name": "Bright Massage & Morocco",
+  "description": "An elegant, interactive wellness website for a Moroccan-themed luxury massage sanctuary, featuring customized services, real-time booking, active dashboards, and rich cultural aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

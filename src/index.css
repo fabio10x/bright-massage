@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-brand-clay: #776644;
+  --color-brand-clay-dark: #4e422c;
+  --color-brand-clay-light: #9b885e;
+  --color-brand-olive: #54462e;
+  --color-brand-olive-dark: #2f2719;
+  --color-brand-olive-light: #8c7a56;
+  --color-brand-sand: #F9F6F0;
+  --color-brand-sand-dark: #EAE2D5;
+  --color-brand-sand-light: #FDFBF7;
+  --color-brand-dark: #2E271D;
+  --color-brand-gold: #C29B4F;
+  --color-brand-gold-light: #E0BC75;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-brand-sand-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-sand-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-clay-light);
+}
+
+/* Base styles to match the warm atmosphere */
+body {
+  background-color: var(--color-brand-sand);
+  color: var(--color-brand-dark);
+  font-family: var(--font-sans);
+}
+
+/* Animation Utilities */
+.transition-smooth {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Moroccan Geometric Pattern Overlay Pattern using SVGs */
+.bg-moroccan-pattern {
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z' fill='none' stroke='%23776644' stroke-width='0.75' stroke-opacity='0.05'/%3E%3Cpath d='M40 10 L70 40 L40 70 L10 40 Z' fill='none' stroke='%23C29B4F' stroke-width='0.5' stroke-opacity='0.08'/%3E%3Ccircle cx='40' cy='40' r='6' fill='none' stroke='%23776644' stroke-width='0.5' stroke-opacity='0.05'/%3E%3Cpath d='M0 0 L80 80 M80 0 L0 80' fill='none' stroke='%23776644' stroke-width='0.25' stroke-opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+@keyframes floatPattern {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 80px 80px;
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.025);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-pattern-slow {
+  animation: floatPattern 45s linear infinite;
+}
+
+.animate-subtle-pulse {
+  animation: subtlePulse 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Masonry grid styles */
+.gallery-masonry {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .gallery-masonry {
+    column-count: 2;
+  }
+}
+@media (min-width: 1024px) {
+  .gallery-masonry {
+    column-count: 3;
+  }
+}
+
+/* Form inputs styling */
+.form-input {
+  background-color: #ffffff;
+  border: 1px solid var(--color-brand-sand-dark);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-brand-dark);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+.form-input:focus {
+  border-color: var(--color-brand-clay);
+  box-shadow: 0 0 0 3px rgba(150, 95, 66, 0.1);
+}
