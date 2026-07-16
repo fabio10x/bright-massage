@@ -12,8 +12,8 @@ interface AdminDashboardProps {
   setActiveTab: (tab: string) => void;
 }
 
-export const AdminDashboard: React.FC<AdminDashboardProps> = ({ 
-  appointments, 
+export const AdminDashboard: React.FC<AdminDashboardProps> = ({
+  appointments,
   updateStatus,
   setActiveTab
 }) => {
@@ -91,7 +91,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         .from('bright_massage_appointments')
         .delete()
         .eq('id', id);
-      
+
       if (error) alert("Error deleting booking: " + error.message);
     }
   };
@@ -109,7 +109,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     if (statusFilter !== 'ALL' && appointment.status !== statusFilter) {
       return false;
     }
-    
+
     // 2. Search Query
     if (searchQuery.trim() !== '') {
       const query = searchQuery.toLowerCase();
@@ -129,7 +129,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         /* Login frame */
         <div id="admin-login-card" className="max-w-md mx-auto bg-white p-8 rounded-xl border border-brand-clay/15 shadow-lg space-y-6 relative overflow-hidden">
           <div className="absolute inset-0 bg-moroccan-pattern opacity-[0.03] pointer-events-none" />
-          
+
           <div className="text-center space-y-2 relative z-10">
             <Shield className="w-12 h-12 text-brand-clay mx-auto" />
             <h3 className="font-serif text-2xl font-bold text-brand-dark">Administration Access</h3>
@@ -150,7 +150,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 type="email"
                 value={adminEmail}
                 onChange={(e) => setAdminEmail(e.target.value)}
-                placeholder="admin@brightmassage.com"
+                placeholder="example@gmail.com"
                 className="w-full bg-white border border-brand-clay/15 rounded-md px-3.5 py-2.5 text-xs text-brand-dark focus:border-brand-clay focus:outline-none focus:ring-1 focus:ring-brand-clay/40 transition-all"
                 required
               />
@@ -187,34 +187,32 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       ) : (
         /* ACTIVE ADMIN DASHBOARD - Styled exactly like Screen 6 */
         <div id="admin-active-dashboard" className="space-y-8 animate-fade-in">
-          
+
           {/* Header Row - Matches Screen 6 */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#EADCD2]/10 p-6 rounded-xl border border-brand-clay/15 shadow-sm relative overflow-hidden">
             <div className="absolute inset-0 bg-moroccan-pattern opacity-[0.02] pointer-events-none" />
-            
+
             <div className="space-y-1 relative z-10">
               <span className="text-brand-clay font-bold uppercase text-[10px] tracking-[0.25em] block">REAL-TIME ADMINISTRATION</span>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-brand-dark tracking-tight">Admin Dashboard</h2>
               <div className="flex items-center gap-4 pt-2">
                 <button
                   onClick={() => setActiveAdminTab('appointments')}
-                  className={`text-xs font-bold uppercase tracking-widest cursor-pointer transition-colors ${
-                    activeAdminTab === 'appointments' ? 'text-brand-clay border-b-2 border-brand-clay pb-0.5' : 'text-brand-dark/50 hover:text-brand-dark'
-                  }`}
+                  className={`text-xs font-bold uppercase tracking-widest cursor-pointer transition-colors ${activeAdminTab === 'appointments' ? 'text-brand-clay border-b-2 border-brand-clay pb-0.5' : 'text-brand-dark/50 hover:text-brand-dark'
+                    }`}
                 >
                   Appointments Log
                 </button>
                 <button
                   onClick={() => setActiveAdminTab('services')}
-                  className={`text-xs font-bold uppercase tracking-widest cursor-pointer transition-colors ${
-                    activeAdminTab === 'services' ? 'text-brand-clay border-b-2 border-brand-clay pb-0.5' : 'text-brand-dark/50 hover:text-brand-dark'
-                  }`}
+                  className={`text-xs font-bold uppercase tracking-widest cursor-pointer transition-colors ${activeAdminTab === 'services' ? 'text-brand-clay border-b-2 border-brand-clay pb-0.5' : 'text-brand-dark/50 hover:text-brand-dark'
+                    }`}
                 >
                   Services Registry
                 </button>
               </div>
             </div>
-            
+
             <div className="flex gap-2 relative z-10">
               <button
                 id="admin-signout-btn"
@@ -230,7 +228,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <>
               {/* Metric Counts Row - Styled like Screen 6 */}
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                
+
                 {/* TOTAL */}
                 <div className="bg-white p-5 rounded-xl border border-brand-clay/10 shadow-md relative">
                   <span className="block text-[10px] uppercase font-bold text-brand-dark/45 tracking-wider">TOTAL</span>
@@ -270,9 +268,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
               {/* Search, Filter Actions Panel - Matches Screen 6 */}
               <div className="bg-white p-6 rounded-xl border border-brand-clay/10 shadow-lg space-y-6">
-                
+
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
-                  
+
                   {/* Search input (8 cols on lg) */}
                   <div className="lg:col-span-6 relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-brand-dark/40">
@@ -295,11 +293,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                         id={`admin-filter-tab-${status}`}
                         key={status}
                         onClick={() => setStatusFilter(status)}
-                        className={`px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                          statusFilter === status
+                        className={`px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-wider transition-all cursor-pointer ${statusFilter === status
                             ? 'bg-brand-dark text-white shadow-sm'
                             : 'bg-white hover:bg-[#EADCD2]/20 text-brand-dark/70 border border-brand-clay/15'
-                        }`}
+                          }`}
                       >
                         {status}
                       </button>
@@ -324,9 +321,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       </thead>
                       <tbody className="divide-y divide-brand-clay/10">
                         {filteredAppointments.map((appointment) => (
-                          <tr 
+                          <tr
                             id={`admin-row-${appointment.id}`}
-                            key={appointment.id} 
+                            key={appointment.id}
                             className="hover:bg-[#EADCD2]/5 transition-all"
                           >
                             {/* Guest details */}
@@ -343,7 +340,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             <td className="p-4">
                               <span className="font-serif text-brand-dark font-semibold text-xs sm:text-sm">{appointment.serviceName}</span>
                               <span className="block text-[10px] text-brand-clay font-bold uppercase mt-0.5">
-                                USD ${SERVICES.find(s=>s.id === appointment.serviceId)?.price || '95'}
+                                USD ${SERVICES.find(s => s.id === appointment.serviceId)?.price || '95'}
                               </span>
                             </td>
 
@@ -367,15 +364,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
                             {/* Status badge */}
                             <td className="p-4">
-                              <span className={`inline-block px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border ${
-                                appointment.status === 'Pending'
+                              <span className={`inline-block px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider border ${appointment.status === 'Pending'
                                   ? 'bg-yellow-50 text-yellow-700 border-yellow-200'
                                   : appointment.status === 'Confirmed'
-                                  ? 'bg-blue-50 text-blue-700 border-blue-200'
-                                  : appointment.status === 'Done'
-                                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                                  : 'bg-red-50 text-red-700 border-red-200'
-                              }`}>
+                                    ? 'bg-blue-50 text-blue-700 border-blue-200'
+                                    : appointment.status === 'Done'
+                                      ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                      : 'bg-red-50 text-red-700 border-red-200'
+                                }`}>
                                 {appointment.status}
                               </span>
                             </td>
@@ -383,7 +379,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                             {/* Action dropdown and buttons */}
                             <td className="p-4 text-right">
                               <div className="flex items-center justify-end gap-2">
-                                
+
                                 <select
                                   value={appointment.status}
                                   onChange={(e) => updateStatus(appointment.id, e.target.value as BookingStatus)}
