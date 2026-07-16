@@ -18,33 +18,33 @@ export default function App() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
 
+  const fetchData = async () => {
+    const { data: appointmentsData } = await supabase.from('bright_massage_appointments').select('*').order('created_at', { ascending: false });
+    if (appointmentsData) {
+      setAppointments(appointmentsData.map((a: any) => ({
+        ...a,
+        clientName: a.client_name,
+        clientEmail: a.client_email,
+        clientPhone: a.client_phone,
+        serviceId: a.service_id,
+        serviceName: a.service_name,
+        therapistId: a.therapist_id,
+        therapistName: a.therapist_name,
+        createdAt: a.created_at
+      })));
+    }
+
+    const { data: inquiriesData } = await supabase.from('bright_massage_inquiries').select('*').order('created_at', { ascending: false });
+    if (inquiriesData) {
+      setInquiries(inquiriesData.map((i: any) => ({
+        ...i,
+        createdAt: i.created_at
+      })));
+    }
+  };
+
   // 1. Fetch data & Real-time Subscription
   useEffect(() => {
-    const fetchData = async () => {
-      const { data: appointmentsData } = await supabase.from('bright_massage_appointments').select('*').order('created_at', { ascending: false });
-      if (appointmentsData) {
-        setAppointments(appointmentsData.map((a: any) => ({
-          ...a,
-          clientName: a.client_name,
-          clientEmail: a.client_email,
-          clientPhone: a.client_phone,
-          serviceId: a.service_id,
-          serviceName: a.service_name,
-          therapistId: a.therapist_id,
-          therapistName: a.therapist_name,
-          createdAt: a.created_at
-        })));
-      }
-
-      const { data: inquiriesData } = await supabase.from('bright_massage_inquiries').select('*').order('created_at', { ascending: false });
-      if (inquiriesData) {
-        setInquiries(inquiriesData.map((i: any) => ({
-          ...i,
-          createdAt: i.created_at
-        })));
-      }
-    };
-
     fetchData();
 
     // Subscribe to real-time changes
@@ -64,13 +64,23 @@ export default function App() {
     };
   }, []);
 
+  // Listen to auth state changes to re-fetch when admin logs in (resolving RLS visibility issues)
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(() => {
+      fetchData();
+    });
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
+
   // 2. Transmit & Store Appointment Action
   const addAppointment = async (appointmentData: Omit<Appointment, 'id' | 'createdAt' | 'status'>) => {
     const id = `BM-${Math.floor(1000 + Math.random() * 9000)}`;
     const status: BookingStatus = 'Pending';
     
     // We only need to insert it, real-time subscription will update the list
-    await supabase.from('bright_massage_appointments').insert({
+    const { error } = await supabase.from('bright_massage_appointments').insert({
       id,
       status,
       client_name: appointmentData.clientName,
@@ -80,13 +90,23 @@ export default function App() {
       service_name: appointmentData.serviceName,
       date: appointmentData.date,
       time: appointmentData.time,
-      therapist_id: appointmentData.therapistId,
+      therapist_id: appointmentData.therapistId === 'any' ? null : appointmentData.therapistId,
       therapist_name: appointmentData.therapistName,
       notes: appointmentData.notes
     });
     
-    // Create optimistic return just for immediate UI (or rely on real-time)
-    return { ...appointmentData, id, status, createdAt: new Date().toISOString() } as Appointment;
+    if (error) {
+      console.error('Error inserting appointment:', error);
+      alert(`There was a problem communicating with our database: ${error.message}`);
+      return null as any;
+    }
+    
+    const newAppointment = { ...appointmentData, id, status, createdAt: new Date().toISOString() } as Appointment;
+    
+    // Optimistic UI update in case real-time fails or is delayed
+    setAppointments(prev => [newAppointment, ...prev]);
+
+    return newAppointment;
   };
 
   // 3. Update Appointment Status Admin Action
