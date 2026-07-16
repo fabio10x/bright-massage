@@ -5,12 +5,12 @@ import { useAppData } from '../hooks/useAppData';
 import { GalleryItem } from '../types';
 
 const getItemImage = (id: string) => {
-  if (id === 'gal-hammam') return '/src/assets/images/hammam_steam_room_1784194541253.jpg';
-  if (id === 'gal-session') return '/src/assets/images/glistening_back_massage_1784194946250.jpg';
-  if (id === 'gal-arches') return '/src/assets/images/massage_room_starry_1784194552089.jpg';
-  if (id === 'gal-lounge') return '/src/assets/images/spa_interior_shelves_1784194922286.jpg';
-  if (id === 'gal-argan') return '/src/assets/images/glistening_massage_oil_1784194564535.jpg';
-  if (id === 'gal-tea') return '/src/assets/images/moroccan_mint_tea_1784195009613.jpg';
+  if (id === 'gal-hammam') return '/images/hammam_steam_room_1784194541253.jpg';
+  if (id === 'gal-session') return '/images/glistening_back_massage_1784194946250.jpg';
+  if (id === 'gal-arches') return '/images/massage_room_starry_1784194552089.jpg';
+  if (id === 'gal-lounge') return '/images/spa_interior_shelves_1784194922286.jpg';
+  if (id === 'gal-argan') return '/images/glistening_massage_oil_1784194564535.jpg';
+  if (id === 'gal-tea') return '/images/moroccan_mint_tea_1784195009613.jpg';
   return null;
 };
 

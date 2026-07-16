@@ -11,17 +11,17 @@ interface ServicesViewProps {
 const getServiceImage = (id: string) => {
   switch (id) {
     case 'royal-hammam':
-      return '/src/assets/images/hammam_steam_room_1784194541253.jpg';
+      return '/images/hammam_steam_room_1784194541253.jpg';
     case 'deep-clay':
-      return '/src/assets/images/glistening_back_massage_1784194946250.jpg';
+      return '/images/glistening_back_massage_1784194946250.jpg';
     case 'atlas-argan':
-      return '/src/assets/images/glistening_massage_oil_1784194564535.jpg';
+      return '/images/glistening_massage_oil_1784194564535.jpg';
     case 'berber-stones':
-      return '/src/assets/images/glowing_spa_massage_1784194956492.jpg';
+      return '/images/glowing_spa_massage_1784194956492.jpg';
     case 'orange-blossom-scalp':
-      return '/src/assets/images/shoulder_massage_female_1784194968180.jpg';
+      return '/images/shoulder_massage_female_1784194968180.jpg';
     default:
-      return '/src/assets/images/spa_interior_shelves_1784194922286.jpg';
+      return '/images/spa_interior_shelves_1784194922286.jpg';
   }
 };
 

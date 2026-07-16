@@ -4,9 +4,9 @@ import { Award, ShieldCheck, Heart, Compass, ArrowRight, User } from 'lucide-rea
 import { useAppData } from '../hooks/useAppData';
 
 const getMemberImage = (id: string) => {
-  if (id === 'yassine') return '/src/assets/images/male_therapist_massage_1784194934046.jpg';
-  if (id === 'amira') return '/src/assets/images/glowing_spa_massage_1784194956492.jpg';
-  if (id === 'lina') return '/src/assets/images/glistening_massage_oil_1784194564535.jpg';
+  if (id === 'yassine') return '/images/male_therapist_massage_1784194934046.jpg';
+  if (id === 'amira') return '/images/glowing_spa_massage_1784194956492.jpg';
+  if (id === 'lina') return '/images/glistening_massage_oil_1784194564535.jpg';
   return null;
 };
 

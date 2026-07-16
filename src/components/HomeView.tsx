@@ -101,7 +101,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ setActiveTab }) => {
             <div className="w-full max-w-[340px] aspect-[4/5] bg-white shadow-2xl relative p-3 border border-brand-clay/10 animate-subtle-pulse group">
               <div className="w-full h-full bg-[#EADCD2]/30 flex flex-col justify-center items-center text-center border border-brand-clay/10 relative overflow-hidden">
                 <img 
-                  src="/src/assets/images/spa_interior_shelves_1784194922286.jpg" 
+                  src="/images/spa_interior_shelves_1784194922286.jpg" 
                   alt="Moroccan Wellness Spa Interior" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -164,10 +164,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ setActiveTab }) => {
                   <img
                     src={
                       currentSlide === 0 
-                        ? "/src/assets/images/hammam_steam_room_1784194541253.jpg"
+                        ? "/images/hammam_steam_room_1784194541253.jpg"
                         : currentSlide === 1
-                        ? "/src/assets/images/massage_room_starry_1784194552089.jpg"
-                        : "/src/assets/images/glistening_massage_oil_1784194564535.jpg"
+                        ? "/images/massage_room_starry_1784194552089.jpg"
+                        : "/images/glistening_massage_oil_1784194564535.jpg"
                     }
                     alt={featuredServices[currentSlide].name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
