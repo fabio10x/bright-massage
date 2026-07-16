@@ -107,6 +107,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ setActiveTab }) => {
                     src={service.image_url || getServiceImage(service.id)}
                     alt={service.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/25 to-transparent pointer-events-none" />
@@ -206,6 +207,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ setActiveTab }) => {
                   src={selectedService.image_url || getServiceImage(selectedService.id)}
                   alt={selectedService.name}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 to-transparent flex items-end p-6">

@@ -105,6 +105,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ setActiveTab }) => {
                   alt="Moroccan Wellness Spa Interior" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-brand-dark/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white text-left z-10">
                   <h4 className="font-serif text-base font-semibold">Sensory Domain</h4>
@@ -172,6 +173,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ setActiveTab }) => {
                     alt={featuredServices[currentSlide].name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                   
                   {/* Overlay for descriptive guide */}

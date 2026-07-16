@@ -95,6 +95,7 @@ export const GalleryView: React.FC = () => {
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="absolute inset-0 bg-[#EADCD2]/30 flex flex-col justify-center items-center p-6 text-center">
@@ -192,6 +193,7 @@ export const GalleryView: React.FC = () => {
                     alt={activeItem.title}
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                 </div>
               )}
